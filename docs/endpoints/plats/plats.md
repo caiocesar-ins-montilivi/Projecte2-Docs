@@ -1,8 +1,14 @@
-# GET Plats
+---
+comments: true
+---
+
+# <div class="inline-flex"><div class="badge get">GET</div>plats</div>
 
 ## Obtenir tots els plats
 
 Aquest endpoint retorna una llista de tots els plats registrats en aquesta plataforma.
+
+[Testejar utilitzant SWAGGER](/playground){ .md-button .md-button--primary }
 
 **Ruta**
 
@@ -19,8 +25,8 @@ Aquest endpoint retorna una llista de tots els plats registrats en aquesta plata
 ??? 200 success
 
     ```json
-    [
-      {
+
+    {
         "plats" :
         {
             "id": 1,
@@ -45,17 +51,15 @@ Aquest endpoint retorna una llista de tots els plats registrats en aquesta plata
             "tipus": postre,
             "glucosa": false,
             "gluten": false
-        },
-      }
-    ]
+        }
+    }
 
     ```
 
-??? 400 failure
+??? 403 failure
 
     ```json
 
     AUTHENTICATION ERROR
-
 
     ```

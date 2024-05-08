@@ -1,4 +1,8 @@
-# Introducció a l'API REST
+---
+comments: true
+---
+
+# Introducció
 
 Benvinguts a la documentació de l'API Rest de la nostra plataforma culinaria. Aqui trobaràs tota la informació detallada
 de com interactuar i fer servir la nostra API per realitzar diverses operacions. Som-hi!
@@ -25,7 +29,7 @@ l'Autenticació a l'API es realitza mitjançant tokens d'accés. Hauràs d'inclo
 
 El format de totes les respostes dels endpoint de l'API estan formatades en JSON i segueixen una estructura estàndard. Cada endpoint té el seu propi apartat detallat que descriu tots els paràmetres necessaris per realitzar la sol·licitut correctament i un exemple del seu resultat esperat com en el següent exemple:
 
-### Exemple d'Endpoint
+### Exemple de resposta
 
 Endpoint: `GET /users`
 

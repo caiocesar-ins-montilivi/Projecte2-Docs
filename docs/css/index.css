@@ -6,6 +6,8 @@
   --md-typeset-a-color: #fa2d50;
   --md-footer-bg-color: #900a18;
   --md-footer-bg-color--dark: #620710;
+  --get-badge-bg-color: #4eceb1;
+  --post-badge-bg-color: #5e56f7;
 }
 
 * [src~="rounded"] {
@@ -20,4 +22,30 @@
 
 .md-header__button.md-logo {
   transform: scale(1.7);
+}
+
+.inline-flex {
+  align-items: center;
+  display: inline-flex;
+  gap: 2px;
+}
+
+.badge {
+  border-radius: 5px;
+  color: white;
+  font-size: 0.6rem;
+  font-weight: 800;
+  margin-right: 5px;
+  padding: 5px 15px;
+  align-items: center;
+  max-height: 40px;
+  display: flex;
+}
+
+.get {
+  background-color: var(--get-badge-bg-color);
+}
+
+.post {
+  background-color: var(--post-badge-bg-color);
 }

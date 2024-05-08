@@ -13,6 +13,7 @@ theme:
   language: ca
   logo: /assets/cj-logo.png
   favicon: /assets/cj-logo.png
+  custom_dir: overrides
   features:
     - header.autohide
     - navigation.top
