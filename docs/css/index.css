@@ -1,0 +1,23 @@
+:root > * {
+  --md-primary-fg-color: #900a18;
+  --md-primary-fg-color--light: #ecb7b7;
+  --md-primary-fg-color--dark: #900a18;
+  --md-accent-fg-color: #fa2d50;
+  --md-typeset-a-color: #fa2d50;
+  --md-footer-bg-color: #900a18;
+  --md-footer-bg-color--dark: #620710;
+}
+
+* [src~="rounded"] {
+  border-radius: 9px;
+}
+
+* [src~="shadow"] {
+  box-shadow:
+    rgba(9, 30, 66, 0.25) 0px 4px 8px -2px,
+    rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
+}
+
+.md-header__button.md-logo {
+  transform: scale(1.7);
+}

@@ -1,0 +1,59 @@
+site_name: Culinary Jet API Reference
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - attr_list
+  - md_in_html
+plugins:
+  - swagger-ui-tag
+  - search
+theme:
+  name: material
+  language: ca
+  logo: /assets/cj-logo.png
+  favicon: /assets/cj-logo.png
+  features:
+    - header.autohide
+    - navigation.top
+    - navigation.tabs
+    - navigation.sections
+    - navigation.tracking
+    - navigation.footer
+    - toc.integrate
+    - search.suggest
+    - search.highlight
+    - content.tabs.link
+    - content.code.annotation
+    - content.code.copy
+  font:
+    text: Nunito
+    code: Jetbrains Mono
+  palette:
+    - media: "(prefers-color-scheme)"
+      primary: custom
+      accent: custom
+      toggle:
+        icon: material/brightness-auto
+        name: Canvia a tema clar
+
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: custom
+      accent: custom
+      toggle:
+        icon: material/brightness-7
+        name: Canvia a tema fosc
+
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: custom
+      accent: custom
+      footer: custom
+      toggle:
+        icon: material/brightness-4
+        name: Canvia al tema del sistema
+extra_css:
+  - /css/index.css
+extra_javascript:
+  - /js/index.js
