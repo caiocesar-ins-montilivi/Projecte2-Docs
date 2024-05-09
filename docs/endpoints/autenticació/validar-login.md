@@ -2,7 +2,7 @@
 comments: true
 ---
 
-# <div class="inline-flex"><div class="badge post">POST</div>validarlogin<div class="badge" title="Requereix autenticació">🔑</div></div>
+# <div class="inline-flex"><div class="badge post">POST</div> validarlogin <div class="badge" title="Requereix autenticació">🔑</div></div>
 
 ## Validar login
 

@@ -2,7 +2,7 @@
 comments: true
 ---
 
-# <div class="inline-flex"><div class="badge post">POST</div>registrar<div class="badge" title="Requereix autenticació">🔑</div></div>
+# <div class="inline-flex"><div class="badge post">POST</div> registrar <div class="badge" title="Requereix autenticació">🔑</div></div>
 
 ## Registrar usuari
 

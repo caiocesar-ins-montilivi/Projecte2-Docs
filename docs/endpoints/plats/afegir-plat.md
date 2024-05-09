@@ -2,7 +2,7 @@
 comments: true
 ---
 
-# <div class="inline-flex"><div class="badge post">POST</div>plat/afegir <div class="badge" title="Requereix JWT">JWT</div></div>
+# <div class="inline-flex"><div class="badge post">POST</div> plat/afegir <div class="badge" title="Requereix JWT">JWT</div></div>
 
 ## Crea un nou plat utilitzant els paràmetres especificats.
 

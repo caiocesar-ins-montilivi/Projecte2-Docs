@@ -2,7 +2,7 @@
 comments: true
 ---
 
-# <div class="inline-flex"><div class="badge get">GET</div>plat/eliminar <div class="badge" title="Requereix JWT">JWT</div></div>
+# <div class="inline-flex"><div class="badge get">GET</div> plat/eliminar <div class="badge" title="Requereix JWT">JWT</div></div>
 
 ## Esborra un plat especificant el seu id.
 

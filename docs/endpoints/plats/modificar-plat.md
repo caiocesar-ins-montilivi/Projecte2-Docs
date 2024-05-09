@@ -2,7 +2,7 @@
 comments: true
 ---
 
-# <div class="inline-flex"><div class="badge post">POST</div>plat/modificar <div class="badge" title="Requereix JWT">JWT</div></div>
+# <div class="inline-flex"><div class="badge post">POST</div> plat/modificar <div class="badge" title="Requereix JWT">JWT</div></div>
 
 ## Modificar informació per a un plat especific
 

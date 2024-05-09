@@ -2,7 +2,7 @@
 comments: true
 ---
 
-# <div class="inline-flex"><div class="badge get">GET</div>plats</div>
+# <div class="inline-flex"><div class="badge get"> GET </div>plats</div>
 
 ## Obtenir tots els plats
 

@@ -2,7 +2,7 @@
 comments: true
 ---
 
-# <div class="inline-flex"><div class="badge get">GET</div>plat/contingut</div>
+# <div class="inline-flex"><div class="badge get"> GET </div>plat/contingut</div>
 
 ## Obtenir informació per a un plat especific.
 

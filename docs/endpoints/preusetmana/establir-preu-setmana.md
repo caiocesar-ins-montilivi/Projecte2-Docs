@@ -2,7 +2,7 @@
 comments: true
 ---
 
-# <div class="inline-flex"><div class="badge post">POST</div>preu/establirsetmana <div class="badge" title="Requereix JWT">JWT</div></div>
+# <div class="inline-flex"><div class="badge post">POST</div> preu/establirsetmana <div class="badge" title="Requereix JWT">JWT</div></div>
 
 ## Modificar preus del menú de la setmana.
 
