@@ -20,8 +20,8 @@ plugins:
 theme:
   name: material
   language: ca
-  logo: /assets/cj-logo.png
-  favicon: /assets/cj-logo.png
+  logo: ./assets/cj-logo.png
+  favicon: ./assets/cj-logo.png
   custom_dir: overrides
   features:
     - header.autohide
