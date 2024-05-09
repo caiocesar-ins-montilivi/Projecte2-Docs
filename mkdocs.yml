@@ -65,7 +65,7 @@ theme:
         icon: material/brightness-4
         name: Canvia al tema del sistema
 extra_css:
-  - /css/index.css
+  - ./css/index.css
 extra_javascript:
-  - /js/index.js
+  - ./js/index.js
 copyright: Copyright &copy; 2024 Caio Gomes
