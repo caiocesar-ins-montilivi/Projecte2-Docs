@@ -1,0 +1,103 @@
+openapi: "3.1.0"
+info:
+  version: 1.0.0
+  title: Endpoints de plats
+servers:
+  - url: https://culinaryjetapp.daw.institutmontilivi.cat/api
+  - url: http://culinaryjetapp.daw.institutmontilivi.cat/api
+paths:
+  /registrar:
+    post:
+      summary: Aquest endpoint registra un nou usuari a la plataforma en base als paràmetres especificats. És necessari una Api Key per utilitzar-lo.
+      operationId: Registrar
+      tags:
+        - POST Autenticació
+      parameters:
+        - name: nom
+          in: query
+          required: true
+          description: Nom de l'usuari a crear.
+          schema:
+            type: string
+        - name: correu
+          in: query
+          required: true
+          description: Correu de l'usuari a crear.
+          schema:
+            type: string
+        - name: contrasenya
+          in: query
+          required: true
+          description: Contrasenya de l'usuari a crear.
+          schema:
+            type: string
+      responses:
+        200:
+          description: Resposta esperada a una petició vàlida.
+        default:
+          description: Error no esperat.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /validarlogin:
+    post:
+      summary: Aquest endpoint val·lida i autentica el login d'un usuari en la plataforma. És necessari una Api Key per utilitzar-lo.
+      operationId: ValidarLogin
+      tags:
+        - POST Autenticació
+      parameters:
+        - name: correu
+          in: query
+          required: true
+          description: Correu de l'usuari a validar.
+          schema:
+            type: string
+        - name: contrasenya
+          in: query
+          required: true
+          description: Contrasenya de l'usuari a validar.
+          schema:
+            type: string
+      responses:
+        200:
+          description: Resposta esperada a una petició vàlida.
+        default:
+          description: Error no esperat.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+components:
+  # 1) Define the security scheme type (HTTP bearer)
+  securitySchemes:
+    bearerAuth: # arbitrary name for the security scheme
+      type: http
+      scheme: bearer
+      bearerFormat: JWT # optional, arbitrary value for documentation purposes
+  securityDefinitions:
+    # X-API-Key: abcdef12345
+    APIKeyHeader:
+      type: apiKey
+      in: header
+      name: X-API-Key
+    # /path?api_key=abcdef12345
+    APIKeyQueryParam:
+      type: apiKey
+      in: query
+      name: api_key
+  # 2) Apply the security globally to all operations
+  security:
+    - bearerAuth: [] # use the same name as above
+    - APIKeyHeader: []
+  schemas:
+    Error:
+      required:
+        - code
+        - message
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string

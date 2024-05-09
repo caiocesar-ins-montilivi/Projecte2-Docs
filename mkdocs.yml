@@ -1,0 +1,71 @@
+site_name: Culinary Jet API Reference
+repo_url: https://github.com/caiocesar-ins-montilivi/Projecte2-Docs
+repo_name: caiocesar-ins-montilivi/Projecte2-Docs
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - attr_list
+  - md_in_html
+plugins:
+  - swagger-ui-tag
+  - search
+  - git-revision-date-localized:
+      enable_creation_date: true
+      type: date
+      fallback_to_build_date: true
+  - git-committers:
+      repository: caiocesar-ins-montilivi/Projecte2-Docs
+      branch: dev
+theme:
+  name: material
+  language: ca
+  logo: /assets/cj-logo.png
+  favicon: /assets/cj-logo.png
+  custom_dir: overrides
+  features:
+    - header.autohide
+    - navigation.top
+    - navigation.tabs
+    - navigation.sections
+    - navigation.tracking
+    - navigation.footer
+    - toc.integrate
+    - search.suggest
+    - search.highlight
+    - content.tabs.link
+    - content.code.annotation
+    - content.code.copy
+    - content.action.view
+  font:
+    text: Nunito
+    code: Jetbrains Mono
+  palette:
+    - media: "(prefers-color-scheme)"
+      primary: custom
+      accent: custom
+      toggle:
+        icon: material/brightness-auto
+        name: Canvia a tema clar
+
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: custom
+      accent: custom
+      toggle:
+        icon: material/brightness-7
+        name: Canvia a tema fosc
+
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: custom
+      accent: custom
+      footer: custom
+      toggle:
+        icon: material/brightness-4
+        name: Canvia al tema del sistema
+extra_css:
+  - /css/index.css
+extra_javascript:
+  - /js/index.js
+copyright: Copyright &copy; 2024 Caio Gomes

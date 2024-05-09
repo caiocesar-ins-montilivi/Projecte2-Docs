@@ -1,0 +1,87 @@
+openapi: "3.1.0"
+info:
+  version: 1.0.0
+  title: Endpoints de Preu Setmana
+servers:
+  - url: https://culinaryjetapp.daw.institutmontilivi.cat/api
+  - url: http://culinaryjetapp.daw.institutmontilivi.cat/api
+paths:
+  /preu/establirsetmana:
+    post:
+      summary: Modifica preus del menú de la setmana.
+      operationId: EstablirPreuSetmana()
+      tags:
+        - POST PreusSetmana
+      parameters:
+        - name: preu
+          in: query
+          required: true
+          description: Nou preu per el menú.
+          schema:
+            type: integer
+            minimum: 1
+      responses:
+        200:
+          description: Resposta esperada a una petició vàlida.
+        default:
+          description: Error no esperat.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /preu/establircapsetmana:
+    post:
+      summary: Modificar preus del menú del cap de setmana.
+      operationId: EstablirPreuCapSetmana()
+      tags:
+        - POST PreusSetmana
+      parameters:
+        - name: preu
+          in: query
+          required: true
+          description: Nou preu per el menú de cap de setmana.
+          schema:
+            type: integer
+            minimum: 1
+      responses:
+        200:
+          description: Resposta esperada a una petició vàlida.
+        default:
+          description: Error no esperat.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+components:
+  # 1) Define the security scheme type (HTTP bearer)
+  securitySchemes:
+    bearerAuth: # arbitrary name for the security scheme
+      type: http
+      scheme: bearer
+      bearerFormat: JWT # optional, arbitrary value for documentation purposes
+  securityDefinitions:
+    # X-API-Key: abcdef12345
+    APIKeyHeader:
+      type: apiKey
+      in: header
+      name: X-API-Key
+    # /path?api_key=abcdef12345
+    APIKeyQueryParam:
+      type: apiKey
+      in: query
+      name: api_key
+  # 2) Apply the security globally to all operations
+  security:
+    - bearerAuth: [] # use the same name as above
+    - APIKeyHeader: []
+  schemas:
+    Error:
+      required:
+        - code
+        - message
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
