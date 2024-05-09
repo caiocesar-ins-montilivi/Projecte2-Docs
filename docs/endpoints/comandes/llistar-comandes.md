@@ -6,10 +6,14 @@ comments: true
 
 ## Llistar comanda
 
+**Tipus**: Privada
+<br>
+**Id Operació**: LlistarComandes()
+
 Aquest endpoint retorna una llista de comandes registrades per un usuari específic.
 És necessari un JWT ( Json Web Token ) vàlid per identificar l'usuari.
 
-[Testejar utilitzant SWAGGER](/playground){ .md-button .md-button--primary }
+[Testejar utilitzant SWAGGER](../../playground.md){ .md-button .md-button--primary }
 
 **Ruta**
 

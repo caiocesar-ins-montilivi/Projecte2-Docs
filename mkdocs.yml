@@ -1,4 +1,6 @@
 site_name: Culinary Jet API Reference
+repo_url: https://github.com/caiocesar-ins-montilivi/Projecte2-Docs
+repo_name: caiocesar-ins-montilivi/Projecte2-Docs
 markdown_extensions:
   - admonition
   - pymdownx.details
@@ -8,6 +10,13 @@ markdown_extensions:
 plugins:
   - swagger-ui-tag
   - search
+  - git-revision-date-localized:
+      enable_creation_date: true
+      type: date
+      fallback_to_build_date: true
+  - git-committers:
+      repository: caiocesar-ins-montilivi/Projecte2-Docs
+      branch: dev
 theme:
   name: material
   language: ca
@@ -27,6 +36,7 @@ theme:
     - content.tabs.link
     - content.code.annotation
     - content.code.copy
+    - content.action.view
   font:
     text: Nunito
     code: Jetbrains Mono
@@ -58,3 +68,4 @@ extra_css:
   - /css/index.css
 extra_javascript:
   - /js/index.js
+copyright: Copyright &copy; 2024 Caio Gomes

@@ -2,16 +2,16 @@
 comments: true
 ---
 
-# <div class="inline-flex"><div class="badge post">POST</div>comanda/cancelar<div class="badge" title="Requereix JWT">JWT</div></div>
+# <div class="inline-flex"><div class="badge post">POST</div>registrar<div class="badge" title="Requereix autenticació">🔑</div></div>
 
-## Cancel·lar comanda
+## Registrar usuari
 
 **Tipus**: Privada
 <br>
-**Id Operació**: CancelarComanda()
+**Id Operació**: Registrar()
 
-Aquest endpoint cancel·la una comanda per a un usuari específic especificant el seu {id}.
-És necessari un JWT ( Json Web Token ) vàlid per identificar l'usuari.
+Aquest endpoint registra un nou usuari a la plataforma en base als paràmetres especificats.
+És necessari una Api Key per utilitzar-lo.
 
 [Testejar utilitzant SWAGGER](../../playground.md){ .md-button .md-button--primary }
 
@@ -19,15 +19,15 @@ Aquest endpoint cancel·la una comanda per a un usuari específic especificant e
 
 !!! note ""
 
-        culinaryjet.daw.institutmontilivi.cat/api/comanda/cancelar&{id}
+        culinaryjet.daw.institutmontilivi.cat/api/registrar/{nom}&{correu}&{contrasenya}
 
 **Paràmetres de consulta**
 
 ```c#
-id: string *,
+nom: string *,
+correu: string *,
+contrasenya: string *,
 ```
-
-Paràmetres marcats amb <span style="color: red">\*</span> són obligatoris
 
 **Exemple de resposta**
 

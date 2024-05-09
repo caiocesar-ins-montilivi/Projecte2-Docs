@@ -8,13 +8,13 @@ servers:
 paths:
   /plats:
     get:
-      summary: Llista tots els plats
+      summary: Aquest endpoint retorna una llista de tots els plats registrats en aquesta plataforma.
       operationId: LlistarPlats
       tags:
         - GET Plats
       responses:
         200:
-          description: Array de plats
+          description: Resposta esperada a una petició vàlida.
           headers:
             x-next:
               description: A link to the next page of responses
@@ -28,16 +28,16 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Pets"
+                $ref: "#/components/schemas/Plats"
         default:
-          description: Unexpected error
+          description: Error no esperat.
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
   /plat/contingut:
     get:
-      summary: Informació per a un plat especific
+      summary: Obtenir informació per a un plat especific.
       operationId: ContingutPlat
       tags:
         - GET Plats
@@ -45,33 +45,33 @@ paths:
         - name: platId
           in: query
           required: true
-          description: El ID únic del plat a retornar.
+          description: ID únic del plat a retornar.
           schema:
             type: integer
             minimum: 1
       responses:
         200:
-          description: Expected response to a valid request
+          description: Resposta esperada a una petició vàlida.
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Pets"
+                $ref: "#/components/schemas/Plats"
         default:
-          description: Unexpected error
+          description: Error no esperat.
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
   /plat/afegir:
     post:
-      summary: Crea un nou plat segons els paràmetres entrats
+      summary: Crea un nou plat utilitzant els paràmetres especificats.
       operationId: AfegirPlat
       tags:
         - POST Plats
       parameters:
         - name: nom
           in: query
-          required: false
+          required: true
           description: El nom del plat a retornar.
           schema:
             type: string
@@ -107,8 +107,8 @@ paths:
           required: false
           description: Els dies de la setmana que estarà disponible.
           schema:
-            type: integer
-            minimum: 1
+            type: string
+            enum: [Dilluns, Dimarts, Dimecres, Dijous, Divendres]
         - name: gluten
           in: query
           required: false
@@ -125,13 +125,109 @@ paths:
             example: false
       responses:
         200:
-          description: Expected response to a valid request
+          description: Resposta esperada a una petició vàlida.
+        default:
+          description: Error no esperat.
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Pets"
+                $ref: "#/components/schemas/Error"
+  /plat/modificar:
+    post:
+      summary: Modificar informació per a un plat especific.
+      operationId: ModificarPlat
+      tags:
+        - POST Plats
+      parameters:
+        - name: id
+          in: query
+          required: true
+          description: ID únic del plat a modificar.
+          schema:
+            type: int
+            base: int64
+        - name: nom
+          in: query
+          required: false
+          description: El nom del plat a modificar.
+          schema:
+            type: string
+        - name: descripcio
+          in: query
+          required: false
+          description: La descripció del plat a modificar.
+          schema:
+            type: string
+        - name: tipus
+          in: query
+          required: false
+          description: El tipus del plat a modificar.
+          schema:
+            type: string
+            enum: [Entrant, Principal, Postre]
+            example: Entrant
+        - name: suplement
+          in: query
+          required: false
+          description: Cost del suplement en €.
+          schema:
+            type: integer
+        - name: temps_prep
+          in: query
+          required: false
+          description: Temps de preparació del plat.
+          schema:
+            type: integer
+            minimum: 1
+        - name: dies_set
+          in: query
+          required: false
+          description: Els dies de la setmana que estarà disponible.
+          schema:
+            type: string
+            enum: [Dilluns, Dimarts, Dimecres, Dijous, Divendres]
+        - name: gluten
+          in: query
+          required: false
+          description: Conté gluten.
+          schema:
+            type: boolean
+            example: false
+        - name: lactosa
+          in: query
+          required: false
+          description: Conté lactosa.
+          schema:
+            type: boolean
+            example: false
+      responses:
+        200:
+          description: Resposta esperada a una petició vàlida.
         default:
-          description: Unexpected error
+          description: Error no esperat.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /plat/eliminar:
+    post:
+      summary: Esborra un plat especificant el seu id.
+      operationId: EliminarPlat
+      tags:
+        - POST Plats
+      parameters:
+        - name: platId
+          in: query
+          required: true
+          description: ID únic del plat a esborrar.
+          schema:
+            type: integer
+            minimum: 1
+      responses:
+        200:
+          description: Resposta esperada a una petició vàlida.
+        default:
+          description: Error no esperat.
           content:
             application/json:
               schema:
@@ -143,26 +239,54 @@ components:
       type: http
       scheme: bearer
       bearerFormat: JWT # optional, arbitrary value for documentation purposes
+  securityDefinitions:
+    # X-API-Key: abcdef12345
+    APIKeyHeader:
+      type: apiKey
+      in: header
+      name: X-API-Key
+    # /path?api_key=abcdef12345
+    APIKeyQueryParam:
+      type: apiKey
+      in: query
+      name: api_key
   # 2) Apply the security globally to all operations
   security:
     - bearerAuth: [] # use the same name as above
+    - APIKeyHeader: []
   schemas:
-    Pet:
+    Plat:
       required:
         - id
-        - name
+        - nom
       properties:
         id:
           type: integer
           format: int64
-        name:
+        nom:
           type: string
-        tag:
+        imatge:
           type: string
-    Pets:
+        descripcio:
+          type: string
+        tipus:
+          type: string
+          enum: [Entrant, Principal, Postre]
+        suplement:
+          type: int
+        temps_preparacio:
+          type: string
+        dies_setmana:
+          type: string
+          enum: [Dilluns, Dimarts', Dimecres, Dijous, Divendres]
+        lactosa:
+          type: boolean
+        gluten:
+          type: boolean
+    Plats:
       type: array
       items:
-        $ref: "#/components/schemas/Pet"
+        $ref: "#/components/schemas/Plat"
     Error:
       required:
         - code

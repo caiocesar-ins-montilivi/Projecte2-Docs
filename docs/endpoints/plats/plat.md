@@ -4,11 +4,15 @@ comments: true
 
 # <div class="inline-flex"><div class="badge get">GET</div>plat/contingut</div>
 
-## Obtenir informació per a un plat especific
+## Obtenir informació per a un plat especific.
+
+**Tipus**: Privada
+<br>
+**Id Operació**: ContingutPlat()
 
 Aquest endpoint retorna informació d'un plat específic registrat en la plataforma.
 
-[Testejar utilitzant SWAGGER](/playground){ .md-button .md-button--primary }
+[Testejar utilitzant SWAGGER](../../playground.md){ .md-button .md-button--primary }
 
 **Ruta**
 
@@ -46,7 +50,7 @@ Paràmetres marcats amb <span style="color: red">\*</span> són obligatoris
               "dijous": false,
               "divendres": true
           },
-          "glucosa": "true",
+          "lactosa": "true",
           "gluten": "false",
       },
     }

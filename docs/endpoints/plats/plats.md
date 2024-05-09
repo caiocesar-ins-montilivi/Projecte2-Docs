@@ -6,9 +6,13 @@ comments: true
 
 ## Obtenir tots els plats
 
+**Tipus**: Privada
+<br>
+**Id Operació**: LlistarPlats()
+
 Aquest endpoint retorna una llista de tots els plats registrats en aquesta plataforma.
 
-[Testejar utilitzant SWAGGER](/playground){ .md-button .md-button--primary }
+[Testejar utilitzant SWAGGER](../../playground.md){ .md-button .md-button--primary }
 
 **Ruta**
 
@@ -33,7 +37,7 @@ Aquest endpoint retorna una llista de tots els plats registrats en aquesta plata
             "nom": primer,
             "imatge": primer.jpg,
             "tipus": entrant,
-            "glucosa": false,
+            "lactosa": false,
             "gluten": true
         },
         {
@@ -41,7 +45,7 @@ Aquest endpoint retorna una llista de tots els plats registrats en aquesta plata
             "nom": segon,
             "imatge": segon.png,
             "tipus": pica,
-            "glucosa": true,
+            "lactosa": true,
             "gluten": false
         },
         {
@@ -49,7 +53,7 @@ Aquest endpoint retorna una llista de tots els plats registrats en aquesta plata
             "nom": tercer,
             "imatge": tercer.jpg,
             "tipus": postre,
-            "glucosa": false,
+            "lactosa": false,
             "gluten": false
         }
     }

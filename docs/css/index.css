@@ -8,16 +8,24 @@
   --md-footer-bg-color--dark: #620710;
   --get-badge-bg-color: #4eceb1;
   --post-badge-bg-color: #5e56f7;
+  --put-badge-bg-color: #e6b200;
+  --delete-badge-bg-color: #ec002d;
 }
 
-* [src~="rounded"] {
+* [src~="rounded"],
+.rounded {
   border-radius: 9px;
 }
 
-* [src~="shadow"] {
+* [src~="shadow"],
+.shadow {
   box-shadow:
     rgba(9, 30, 66, 0.25) 0px 4px 8px -2px,
     rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
+}
+
+* [src~="limit-width"] {
+  max-width: 500px !important;
 }
 
 .md-header__button.md-logo {
@@ -32,7 +40,7 @@
 
 .badge {
   border-radius: 5px;
-  color: white;
+  color: var(--md-typeset-color);
   font-size: 0.6rem;
   font-weight: 800;
   margin-right: 5px;
@@ -48,4 +56,20 @@
 
 .post {
   background-color: var(--post-badge-bg-color);
+}
+
+.put {
+  background-color: var(--put-badge-bg-color);
+}
+
+.delete {
+  background-color: var(--delete-badge-bg-color);
+}
+
+.md-ellipsis {
+  overflow: unset;
+}
+
+.md-nav {
+  min-width: 250px;
 }

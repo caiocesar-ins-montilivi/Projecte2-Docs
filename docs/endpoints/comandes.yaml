@@ -1,20 +1,20 @@
 openapi: "3.1.0"
 info:
   version: 1.0.0
-  title: Endpoints de comandes
+  title: Endpoints de plats
 servers:
   - url: https://culinaryjetapp.daw.institutmontilivi.cat/api
   - url: http://culinaryjetapp.daw.institutmontilivi.cat/api
 paths:
-  /plats:
+  /llistarcomandes:
     get:
-      summary: Llista tots els plats
-      operationId: LlistarPlats
+      summary: Aquest endpoint retorna una llista de comandes registrades per un usuari específic. És necessari un JWT ( Json Web Token ) vàlid per identificar l'usuari.
+      operationId: LlistarComandes
       tags:
-        - GET Plats
+        - GET Comandes
       responses:
         200:
-          description: Array de plats
+          description: Resposta esperada a una petició vàlida.
           headers:
             x-next:
               description: A link to the next page of responses
@@ -28,86 +28,63 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Pets"
+                $ref: "#/components/schemas/Comandes"
         default:
-          description: Unexpected error
+          description: Error no esperat.
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
-  /plat/contingut:
-    get:
-      summary: Informació per a un plat especific
-      operationId: ContingutPlat
+  /comanda/crear:
+    post:
+      summary: Aquest endpoint crea una comanda per a un usuari específic segons els paràmetres entrats. És necessari un JWT ( Json Web Token ) vàlid per identificar l'usuari.
+      operationId: CrearComanda
       tags:
-        - GET Plats
+        - POST Comandes
       parameters:
-        - name: platId
+        - name: dataHoraInici
           in: query
           required: true
-          description: El ID únic del plat a retornar.
+          description: Data hora inici de la comanda.
           schema:
-            type: integer
+            type: string
+        - name: dataHoraEntrega
+          in: query
+          required: true
+          description: Data hora entrega aproximada de la comanda.
+          schema:
+            type: string
+        - name: preu
+          in: query
+          required: true
+          description: El preu de la comanda en.
+          schema:
+            type: int
+            base: int64
             minimum: 1
-      responses:
-        200:
-          description: Expected response to a valid request
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Pets"
-        default:
-          description: Unexpected error
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Error"
-  /plat/afegir:
-    post:
-      summary: Crea un nou plat segons els paràmetres entrats
-      operationId: AfegirPlat
-      tags:
-        - POST Plats
-      parameters:
-        - name: nom
+        - name: idEntrant
           in: query
-          required: false
-          description: El nom del plat a retornar.
-          schema:
-            type: string
-        - name: descripcio
-          in: query
-          required: false
-          description: La descripció del plat a retornar.
-          schema:
-            type: string
-        - name: tipus
-          in: query
-          required: false
-          description: El tipus del plat a retornar.
-          schema:
-            type: string
-            enum: [Entrant, Principal, Postre]
-            example: Entrant
-        - name: suplement
-          in: query
-          required: false
-          description: Cost del suplement en €
+          required: true
+          description: ID Únic del plat entrant.
           schema:
             type: integer
-        - name: temps_prep
-          in: query
-          required: false
-          description: Temps de preparació del plat.
-          schema:
-            type: integer
+            base: int64
             minimum: 1
-        - name: dies_set
+        - name: idPrincipal
           in: query
-          required: false
-          description: Els dies de la setmana que estarà disponible.
+          required: true
+          description: ID Únic del plat principal.
           schema:
             type: integer
+            base: int64
+            minimum: 1
+        - name: idPostres
+          in: query
+          required: true
+          description: ID Únic del plat de postre.
+          schema:
+            type: integer
+            base: int64
             minimum: 1
         - name: gluten
           in: query
@@ -125,13 +102,33 @@ paths:
             example: false
       responses:
         200:
-          description: Expected response to a valid request
+          description: Resposta esperada a una petició vàlida.
+        default:
+          description: Error no esperat.
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Pets"
+                $ref: "#/components/schemas/Error"
+  /comanda/cancelar:
+    post:
+      summary: Cancel·la una comanda especificant el seu id.
+      operationId: CancelarComanda
+      tags:
+        - POST Comandes
+      parameters:
+        - name: id
+          in: query
+          required: true
+          description: ID únic de la comanda a cancel·lar.
+          schema:
+            type: integer
+            base: int64
+            minimum: 1
+      responses:
+        200:
+          description: Resposta esperada a una petició vàlida.
         default:
-          description: Unexpected error
+          description: Error no esperat.
           content:
             application/json:
               schema:
@@ -143,26 +140,61 @@ components:
       type: http
       scheme: bearer
       bearerFormat: JWT # optional, arbitrary value for documentation purposes
+  securityDefinitions:
+    # X-API-Key: abcdef12345
+    APIKeyHeader:
+      type: apiKey
+      in: header
+      name: X-API-Key
+    # /path?api_key=abcdef12345
+    APIKeyQueryParam:
+      type: apiKey
+      in: query
+      name: api_key
   # 2) Apply the security globally to all operations
   security:
     - bearerAuth: [] # use the same name as above
+    - APIKeyHeader: []
   schemas:
-    Pet:
+    Comanda:
       required:
         - id
-        - name
+        - nom
       properties:
         id:
           type: integer
           format: int64
-        name:
+        data_hora_inici:
           type: string
-        tag:
+        data_hora_entrega:
           type: string
-    Pets:
+        preu:
+          type: string
+        entrant:
+          $ref: "#/components/schemas/Plat" # Utilitza directament la referència
+        principal:
+          $ref: "#/components/schemas/Plat" # Utilitza directament la referència
+        postre:
+          $ref: "#/components/schemas/Plat" # Utilitza directament la referència
+    Comandes:
       type: array
       items:
-        $ref: "#/components/schemas/Pet"
+        $ref: "#/components/schemas/Comanda"
+    Plat:
+      properties:
+        id:
+          type: integer
+          format: int64
+        nom:
+          type: string
+        suplement:
+          type: integer
+        gluten:
+          type: boolean
+        lactosa:
+          type: boolean
+        imatge:
+          type: string
     Error:
       required:
         - code

@@ -2,14 +2,18 @@
 comments: true
 ---
 
-# <div class="inline-flex"><div class="badge get">GET</div>comanda/crear<div class="badge" title="Requereix JWT">JWT</div></div>
+# <div class="inline-flex"><div class="badge post">POST</div>comanda/crear<div class="badge" title="Requereix JWT">JWT</div></div>
 
 ## Crear comanda
+
+**Tipus**: Privada
+<br>
+**Id Operació**: CrearComanda()
 
 Aquest endpoint crea una comanda per a un usuari específic segons els paràmetres entrats.
 És necessari un JWT ( Json Web Token ) vàlid per identificar l'usuari.
 
-[Testejar utilitzant SWAGGER](/playground){ .md-button .md-button--primary }
+[Testejar utilitzant SWAGGER](../../playground.md){ .md-button .md-button--primary }
 
 **Ruta**
 

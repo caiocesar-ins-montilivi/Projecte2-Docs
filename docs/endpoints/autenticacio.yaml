@@ -1,137 +1,69 @@
 openapi: "3.1.0"
 info:
   version: 1.0.0
-  title: Endpoints d'autenticació
+  title: Endpoints de plats
 servers:
   - url: https://culinaryjetapp.daw.institutmontilivi.cat/api
   - url: http://culinaryjetapp.daw.institutmontilivi.cat/api
 paths:
-  /plats:
-    get:
-      summary: Llista tots els plats
-      operationId: LlistarPlats
-      tags:
-        - GET Plats
-      responses:
-        200:
-          description: Array de plats
-          headers:
-            x-next:
-              description: A link to the next page of responses
-              schema:
-                type: string
-          body:
-            x-next:
-              description: A link to the next page of responses
-              schema:
-                type: string
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Pets"
-        default:
-          description: Unexpected error
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Error"
-  /plat/contingut:
-    get:
-      summary: Informació per a un plat especific
-      operationId: ContingutPlat
-      tags:
-        - GET Plats
-      parameters:
-        - name: platId
-          in: query
-          required: true
-          description: El ID únic del plat a retornar.
-          schema:
-            type: integer
-            minimum: 1
-      responses:
-        200:
-          description: Expected response to a valid request
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Pets"
-        default:
-          description: Unexpected error
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Error"
-  /plat/afegir:
+  /registrar:
     post:
-      summary: Crea un nou plat segons els paràmetres entrats
-      operationId: AfegirPlat
+      summary: Aquest endpoint registra un nou usuari a la plataforma en base als paràmetres especificats. És necessari una Api Key per utilitzar-lo.
+      operationId: Registrar
       tags:
-        - POST Plats
+        - POST Autenticació
       parameters:
         - name: nom
           in: query
-          required: false
-          description: El nom del plat a retornar.
+          required: true
+          description: Nom de l'usuari a crear.
           schema:
             type: string
-        - name: descripcio
+        - name: correu
           in: query
-          required: false
-          description: La descripció del plat a retornar.
+          required: true
+          description: Correu de l'usuari a crear.
           schema:
             type: string
-        - name: tipus
+        - name: contrasenya
           in: query
-          required: false
-          description: El tipus del plat a retornar.
+          required: true
+          description: Contrasenya de l'usuari a crear.
           schema:
             type: string
-            enum: [Entrant, Principal, Postre]
-            example: Entrant
-        - name: suplement
-          in: query
-          required: false
-          description: Cost del suplement en €
-          schema:
-            type: integer
-        - name: temps_prep
-          in: query
-          required: false
-          description: Temps de preparació del plat.
-          schema:
-            type: integer
-            minimum: 1
-        - name: dies_set
-          in: query
-          required: false
-          description: Els dies de la setmana que estarà disponible.
-          schema:
-            type: integer
-            minimum: 1
-        - name: gluten
-          in: query
-          required: false
-          description: Conté gluten.
-          schema:
-            type: boolean
-            example: false
-        - name: lactosa
-          in: query
-          required: false
-          description: Conté lactosa.
-          schema:
-            type: boolean
-            example: false
       responses:
         200:
-          description: Expected response to a valid request
+          description: Resposta esperada a una petició vàlida.
+        default:
+          description: Error no esperat.
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Pets"
+                $ref: "#/components/schemas/Error"
+  /validarlogin:
+    post:
+      summary: Aquest endpoint val·lida i autentica el login d'un usuari en la plataforma. És necessari una Api Key per utilitzar-lo.
+      operationId: ValidarLogin
+      tags:
+        - POST Autenticació
+      parameters:
+        - name: correu
+          in: query
+          required: true
+          description: Correu de l'usuari a validar.
+          schema:
+            type: string
+        - name: contrasenya
+          in: query
+          required: true
+          description: Contrasenya de l'usuari a validar.
+          schema:
+            type: string
+      responses:
+        200:
+          description: Resposta esperada a una petició vàlida.
         default:
-          description: Unexpected error
+          description: Error no esperat.
           content:
             application/json:
               schema:
@@ -143,26 +75,22 @@ components:
       type: http
       scheme: bearer
       bearerFormat: JWT # optional, arbitrary value for documentation purposes
+  securityDefinitions:
+    # X-API-Key: abcdef12345
+    APIKeyHeader:
+      type: apiKey
+      in: header
+      name: X-API-Key
+    # /path?api_key=abcdef12345
+    APIKeyQueryParam:
+      type: apiKey
+      in: query
+      name: api_key
   # 2) Apply the security globally to all operations
   security:
     - bearerAuth: [] # use the same name as above
+    - APIKeyHeader: []
   schemas:
-    Pet:
-      required:
-        - id
-        - name
-      properties:
-        id:
-          type: integer
-          format: int64
-        name:
-          type: string
-        tag:
-          type: string
-    Pets:
-      type: array
-      items:
-        $ref: "#/components/schemas/Pet"
     Error:
       required:
         - code

@@ -2,13 +2,17 @@
 comments: true
 ---
 
-# <div class="inline-flex"><div class="badge post">POST</div>plat/modificar <div class="badge" title="Requereix autenticació">🔑</div></div>
+# <div class="inline-flex"><div class="badge post">POST</div>plat/modificar <div class="badge" title="Requereix JWT">JWT</div></div>
 
 ## Modificar informació per a un plat especific
 
+**Tipus**: Privada
+<br>
+**Id Operació**: ModificarPlat()
+
 Aquest endpoint modifica informació d'un plat específic registrat en la plataforma.
 
-[Testejar utilitzant SWAGGER](/playground){ .md-button .md-button--primary }
+[Testejar utilitzant SWAGGER](../../playground.md){ .md-button .md-button--primary }
 
 **Ruta**
 
@@ -45,24 +49,7 @@ Paràmetres marcats amb <span style="color: red">\*</span> són obligatoris
     ```json
 
     {
-      "plats": {
-          "id": 3,
-          "nom": "tercer",
-          "imatge": "tercer.jpg",
-          "descripcio": "Plat Tercer. Lorem Ipsum Dolor Sit Amet",
-          "tipus": "entrant",
-          "suplement": 5,
-          "temps_preparacio": "15:00:00",
-          "dies_setmana": {
-              "dilluns": false,
-              "dimarts": true,
-              "dimecres": false,
-              "dijous": false,
-              "divendres": true
-          },
-          "glucosa": "true",
-          "gluten": "false",
-      },
+
     }
 
     ```
@@ -87,7 +74,7 @@ Paràmetres marcats amb <span style="color: red">\*</span> són obligatoris
 
     ```json
 
-    EXPECTATION FAILED (IT CANNOT DELETE THIS ENTRY)
+    EXPECTATION FAILED (IT CANNOT EDIT THIS ENTRY)
 
 
     ```
